@@ -84,14 +84,20 @@ def perfil(request):
     
     else:
         
-
-        user = Usuario(id= usuario_actual.id,
-                       rut= usuario_actual.rut,
-                       first_name = request.POST['first_name'],
-                       last_name=request.POST['last_name'],
-                       telefono=request.POST['telefono'],
-                       email=request.POST['email'])
-        user.save()
+        if usuario_actual.is_cliente:
+            print(usuario_actual.id)
+            usuario = Usuario.objects.get(pk=usuario_actual.id)
+            usuario.first_name = request.POST['first_name']
+            usuario.last_name = request.POST['last_name']
+            usuario.telefono = request.POST['telefono']
+            usuario.email = request.POST['email']
+            
+            usuario.cliente.direccion = request.POST['direccion']
+            usuario.cliente.save()
+            usuario.save()
+            
+        else:
+            print('error')
         
         
         

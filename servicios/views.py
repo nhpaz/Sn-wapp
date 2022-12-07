@@ -54,6 +54,9 @@ def historial(request,pk):
 
         return render(request,'templatesServicios/residenteHistorial.html',{'residente': residente ,'controles':controles})
     
+def seguridad(request):
+    
+    return render(request,'templatesServicios/seguridad.html')
 
         
         

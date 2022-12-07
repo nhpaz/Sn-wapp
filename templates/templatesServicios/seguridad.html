@@ -1,0 +1,85 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="">
+    <title>Seguridad</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contendioPerfil %}
+
+    <div class="text text-center" style="color: rgb(89, 79, 79);">
+        <h1>Seguridad</h1>
+        <hr>
+    </div>
+
+    <div>
+
+
+        <form action="" method="POST">
+
+            {% csrf_token %}
+
+            <div class="ms-3">
+                <h6>Seguridad</h6>
+            </div>
+
+            <div class="card card-body shadow-sm mb-4">
+
+                <div class="row">
+                    <div class="col-6 mt-2 mb-3 ">
+                        <input type="text" name="password" placeholder="Nueva contraseña" class="form-control">
+                    </div>
+                    <div class="col-6 mt-2 mb-3 ">
+                        <input type="text" name="password2" placeholder="Confirmar nueva contraseña" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="container-fluid">
+                <div class="row">
+
+
+                    <div class="col">
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Actualizar Datos</button>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+
+    </div>
+
+
+
+
+
+    </form>
+
+
+
+
+    {% endblock contendioPerfil %}

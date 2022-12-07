@@ -14,73 +14,107 @@
 <body>
     {% block contendioPerfil %}
 
+    <div class="text text-center" style="color: rgb(89, 79, 79);">
+        <h1>Mis datos</h1>
+        <hr>
+    </div>
 
     <div>
 
 
         <form action="" method="POST">
+            <div class="ms-3">
+                <h6>Datos Personales</h6>
+            </div>
+            <div class="card card-body mb-4 shadow-sm">
+                <div class="row">
+                    <div class="col-md-12 mb-3 mt-2">
+                        <label for="">Rut:</label>
+                        <input type="text" placeholder="{{user.rut}}" class="form-control" readonly>
+                    </div>
+
+                    <div class="col-md-6 mb-3 ">
+                        <label for="first_name">Nombre:</label>
+                        <input type="text" name="first_name" value="{{user.first_name}}" placeholder="Nombre" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 mb-3 ">
+                        <label for="last_name">Apellidos:</label>
+                        <input type="text" name="last_name" value="{{user.last_name}}" placeholder="Apellidos" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+            <div class="ms-3">
+                <h6>Datos de contacto</h6>
+            </div>
+
+            <div class="card card-body shadow-sm mb-4">
+                <div class="row">
+                    <div class="col-6 mt-2 mb-3 ">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" value="{{user.email}}" placeholder="Correo Electrónico" class="form-control">
+                    </div>
+                    <div class="col-6 mt-2 mb-3">
+                        <label for="last_name">Telefono:</label>
+                        <input type="text" name="telefono" value="{{user.telefono}}" placeholder="Teléfono" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+
 
             {% if user.is_cliente %}{% csrf_token %}
-            <h1> Hola cliente, {{user.first_name}} {{user.last_name}} </h1>
-            <br>
+            <div class="ms-3">
+                <h6>Dirección</h6>
+            </div>
 
-            <div class="row g-6 align-items-center">
-                <div class="col-3">
-                    <input type="text" placeholder="{{user.rut}}" class="form-control" readonly>
+
+            <div class="card card-body shadow-sm mb-4">
+                <div class="row">
+                    <div class="col-12 mt-2 mb-3 ">
+                        <label for="direccion">Direccion:</label>
+                        <input type="text" name="direccion" value="{{user.cliente.direccion}}" placeholder="Direccion" class="form-control">
+                    </div>
                 </div>
             </div>
 
-            <br>
 
-            <div class="row g-6 align-items-center">
-                <div class="col-3">
-                    <input type="text" name="first_name" placeholder="Nombre" class="form-control">
+
+
+
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col">
+                        <div class="text-start ">
+                            <button type="submit" class="btn btn-danger ">Borrar Cuenta</button>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Actualizar Datos</button>
+
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+
+
+
+
+
+
             </div>
-
-            <br>
-
-            <div class="row g-6 align-items-center">
-                <div class="col-3">
-                    <input type="text" name="last_name" placeholder="Apellidos" class="form-control">
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row g-6 align-items-center">
-                <div class="col-3">
-                    <input type="text" name="password" placeholder="Contraseña" class="form-control">
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row g-6 align-items-center">
-                <div class="col-3">
-                    <input type="text" name="password2" placeholder="Confirmar contraseña" class="form-control">
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row g-6 align-items-center">
-                <div class="col-3">
-                    <input type="text" name="telefono" placeholder="Teléfono" class="form-control">
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row g-6 align-items-center">
-                <div class="col-3">
-                    <input type="text" name="email" placeholder="Correo Electrónico" class="form-control">
-                </div>
-            </div>
-
-            <br><br>
-
-            <button type="submit" class="btn btn-success">Actualizar Datos</button> {% endif %}
+            {% endif %}
     </div>
     <div>
         {% if user.is_admin %}

@@ -16,47 +16,44 @@
 
     <div class="container-fluid py-5">
 
-        <div class="row">
-            <div class="col-3">
+        <div class="row ">
+            <div class="col-lg-3 mb-3">
                 <div class="card card-body shadow-sm">
                     <div class="text-center">
                         <h1>Menu</h1>
                         <hr>
                     </div>
                     <div>
-                        <div>
-                            {% if user.is_cliente %}
-                            <a href="{% url 'perfil' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'perfil' %}  active {% endif %} ">Mis datos</a>
-                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Residentes</a>
-                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a>
-                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a>
-                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a>
-                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a> {% endif %}
+                        <a href="{% url 'perfil' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'perfil' %}  active {% endif %} ">Mis datos</a>
+                        <!--Cliente-->
 
-                        </div>
+                        {% if user.is_cliente %}
+                        <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Residentes</a>
+                        <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Pagos</a> {% endif %}
 
-                        <div>
-                            {% if user.is_medico %}
+                        <!--Medico-->
+                        {% if user.is_medico %}
 
-                            <a href="#" class="list-group-item list-group-item-action active">Mis datos</a>
-                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Residentes</a>
-                            <a href="#" class="list-group-item list-group-item-action">Contrato</a>{% endif %}
+                        <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Pacientes</a>
+                        <a href="#" class="list-group-item list-group-item-action">Contrato</a>{% endif %}
+                        <!--Administrador-->
+                        {% if user.is_admin %}
+                        <a href="#" class="list-group-item list-group-item-action active">Mis datos</a>
+                        <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Residentes</a>
+                        <a href="#" class="list-group-item list-group-item-action">Servicios</a> {% endif %}
 
-                        </div>
 
-                        <div>
-                            {% if user.is_admin %}
-                            <a href="#" class="list-group-item list-group-item-action active">Mis datos</a>
-                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Residentes</a>
-                            <a href="#" class="list-group-item list-group-item-action">Servicios</a> {% endif %}
+                        <!--Comun-->
+                        <a href="{% url 'seguridad'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'seguridad' %}  active {% endif %}">Seguridad</a>
 
-                        </div>
+
                         <div class="pt-5 pb-3">
                             <hr>
                             <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Avisos legales</a>
                             <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Reglamento interno</a>
 
                         </div>
+
 
 
 
@@ -68,7 +65,7 @@
 
             </div>
 
-            <div class="col-9">
+            <div class="col-lg-9">
 
                 <div class="card card-body shadow-sm">
 

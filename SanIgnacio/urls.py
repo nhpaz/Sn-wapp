@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from landing import views
 from usuario.views import singin,singout,signup,perfil
-from servicios.views import listaResidentes,agregarControl,historial
+from servicios.views import listaResidentes,agregarControl,historial,seguridad
 
 
 urlpatterns = [
@@ -33,6 +33,8 @@ urlpatterns = [
     path('perfil/pacientes/',listaResidentes, name='listaResidente'),
     path('perfil/pacientes/agregarControl/<int:pk>',agregarControl, name='agregarControl'),
     path('perfil/pacientes/historial/<int:pk>',historial, name='historial'),
+    path('perfil/seguridad/',seguridad, name='seguridad'),
+
 
 
 
