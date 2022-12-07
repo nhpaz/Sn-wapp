@@ -1,0 +1,126 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
+    <title>Perfil</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contendioPerfil %}
+
+
+    <div>
+
+
+        <form action="" method="POST">
+
+            {% if user.is_cliente %}{% csrf_token %}
+            <h1> Hola cliente, {{user.first_name}} {{user.last_name}} </h1>
+            <br>
+
+            <div class="row g-6 align-items-center">
+                <div class="col-3">
+                    <input type="text" placeholder="{{user.rut}}" class="form-control" readonly>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row g-6 align-items-center">
+                <div class="col-3">
+                    <input type="text" name="first_name" placeholder="Nombre" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row g-6 align-items-center">
+                <div class="col-3">
+                    <input type="text" name="last_name" placeholder="Apellidos" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row g-6 align-items-center">
+                <div class="col-3">
+                    <input type="text" name="password" placeholder="Contraseña" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row g-6 align-items-center">
+                <div class="col-3">
+                    <input type="text" name="password2" placeholder="Confirmar contraseña" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row g-6 align-items-center">
+                <div class="col-3">
+                    <input type="text" name="telefono" placeholder="Teléfono" class="form-control">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row g-6 align-items-center">
+                <div class="col-3">
+                    <input type="text" name="email" placeholder="Correo Electrónico" class="form-control">
+                </div>
+            </div>
+
+            <br><br>
+
+            <button type="submit" class="btn btn-success">Actualizar Datos</button> {% endif %}
+    </div>
+    <div>
+        {% if user.is_admin %}
+        <h1> Hola administrador {{user.first_name}}</h1>
+        <h2>{{user.last_name}} {{user.rut}}</h2>
+
+        {% endif %}
+    </div>
+    <div>
+        {% if user.is_medico %}
+        <h1> Hola Medico {{user.first_name}}</h1>
+        <h2>{{user.last_name}} {{user.rut}}</h2>
+
+        {% endif %}
+    </div>
+
+
+
+
+
+    </form>
+
+
+
+
+    {% endblock contendioPerfil %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

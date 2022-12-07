@@ -1,0 +1,58 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
+    <title>Lista</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contendioPerfil %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Rut</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for re in residenteData %}
+
+            <tr>
+                <th scope="row">{{re.rut}}</th>
+                <td>{{re.nombre}}</td>
+                <td>{{re.apellido}} </td>
+                <td><button class="btn btn-primary"><a style="color:white  ;  text-decoration: none;" href="../pacientes/historial/{{re.id}}">Historial</a></button></td>
+                <td><button class="btn btn-primary"><a style="color:white  ;  text-decoration: none;" href="../pacientes/agregarControl/{{re.id}}">Agregar control</a></button></td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+    {% endblock contendioPerfil %}
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

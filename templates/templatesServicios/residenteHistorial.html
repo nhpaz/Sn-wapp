@@ -1,0 +1,104 @@
+{% extends "templatesLanding/base.html" %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
+    <title>Perfil</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contenido %}
+
+    <div class="row pt-5 pb-5">
+
+        <div class="col-md-3  card">
+
+            <h2 class="text-center mt-4">Menu</h2>
+            <hr>
+            <div class="list-group mb-5">
+
+                <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action ">Mis datos</a>
+                <a href="#" class="list-group-item list-group-item-action active">Pacientes</a>
+                <a href="#" class="list-group-item list-group-item-action">Contrato</a>
+
+                <div class="mb-5 mt-5">
+
+
+                </div>
+                <div class="mb-5 mt-5">
+
+                </div>
+                <hr class=" mb-5 mt-5 ">
+
+            </div>
+        </div>
+        <div class="col-9 ">
+
+            <div class="card p-2 ">
+                <h1 class="text-center mt-5 mb-5">Lista controles de {{residente.nombre}} {{residente.apellido}}</h1>
+                <div class="table-responsive-sm" style="  max-height: 400px; overflow: scroll;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Motivo</th>
+                                <th scope="col">Diagnostico</th>
+                                <th scope="col">Tratamiento</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for co in controles %}
+
+                            <tr>
+                                <th scope="row">{{co.fecha_control}}</th>
+                                <td style="  word-break: break-all; width: auto; overflow: hidden;">{{co.motivo_visita}}</td>
+                                <td style="  word-break: break-all;  width: auto; overflow: hidden; ">{{co.diagnostico}}</td>
+                                <td style="  word-break: break-all;  width: auto; overflow: hidden;">{{co.tratamiento}} </td>
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    {% endblock contenido %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

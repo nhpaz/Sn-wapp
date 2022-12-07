@@ -1,0 +1,78 @@
+{% extends "templatesLanding/base.html" %} {% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/servicios.css' %}">
+    <title>Servicios</title>
+
+    {% endblock titulo %}
+
+
+
+
+</head>
+
+<body>
+    {% block contenido %}
+
+
+
+    <header>
+
+        <div class="img-header">
+
+
+        </div>
+
+    </header>
+
+
+    <div class="container contenido">
+        <hr class="divisor-bienvenida">
+
+
+
+        <div class="row contenido-main">
+
+            <div class="col-md-4 text-center">
+                <h1 class="encabezados">Contáctenos</h1>
+            </div>
+            <div class="col-md-5 text-center">
+                <h4>Somos la mejor <br>residencia de Santiago</h4>
+            </div>
+
+            <div class="col-md-2 text-center pt-4">
+                <a href="contacto.html"><button class="contactBtn">Contacto</button></a>
+            </div>
+
+        </div>
+
+        <hr class="divisor-bienvenida">
+
+        <header>
+
+            <div class="img-bottom">
+
+            </div>
+            <br>
+
+            <div class="text-center shadow-sm ">
+                <img src="{% static 'img/imgLanding/banner/banner7.png' %}" class="img-fluid rounded ">
+
+            </div>
+
+        </header>
+
+
+
+
+    </div>
+    {% endblock contenido %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+{% extends "templatesLanding/base.html" %} {% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/nosotros.css' %}">
+    <title>Quiénes Somos</title>
+
+    {% endblock titulo %}
+
+
+
+
+</head>
+
+<body>
+
+    {% block contenido %}
+
+    <header>
+
+        <div class="img-header">
+
+        </div>
+
+    </header>
+
+    <div class="container contenido">
+        <hr class="divisor-bienvenida">
+
+
+
+        <div class="row contenido-main">
+            <div class="row">
+                <div class="col text-center p-5 mb-5">
+                    <h1 class='encabezados'>¿Quiénes Somos?</h1>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 text-center">
+                <h4 class="mb-5">¿Quién soy?</h4>
+                <p>Hola, soy Bastián Piucón dueño y administrador de la residencia San Ignacio y mi principal objetivo es ofrecer un servicio de calidad a todos mis clientes.</p>
+                <div class="card ms-5 mt-5" style="width: 18rem;">
+                    <img src="{% static 'img/imgLanding/img/patio1.png' %}" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-4  text-center">
+
+                <h4 class="mb-5">¿Qué es lo que hacemos?</h4>
+                <p>Nos dedicamos a dar el mejor servicio y cuidado a los adultos mayores, de tal manera que estos disfruten de todos los servicios que la residencia San Ignacio les provee.
+                </p>
+                <div class="card ms-5 mt-4" style="width: 18rem;">
+                    <img src="{% static 'img\imgLanding\img\patio2.png' %}" class="img-fluid">
+                </div>
+
+            </div>
+
+            <div class="col-md-4 text-center">
+                <h4 class="mb-5">¿Qué nos hace especiales?</h4>
+                <p>Hola, soy Bastián Piucón dueño y administrador de la residencia San Ignacio y mi principal objetivo es ofrecer un servicio de calidad a todos mis clientes.</p>
+                <div class="card ms-5 mt-5" style="width: 18rem;">
+                    <img src="{% static 'img\imgLanding\img\patio3.png' %}" class="img-fluid">
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <hr class="divisor-bienvenida">
+
+    <div>
+
+        <div class="img-bottom">
+
+
+        </div>
+
+        <div class="text-center shadow-sm ">
+            <img src="{% static 'img\imgLanding\banner\banner7.png'  %}" class="img-fluid rounded mb-5 ">
+
+        </div>
+
+
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+    {% endblock contenido %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

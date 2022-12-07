@@ -1,0 +1,134 @@
+{% extends "templatesLanding/base.html" %} {% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/index.css' %}">
+    <title>Residencia San Ignacio</title> {% endblock titulo %}
+
+
+</head>
+
+<body>
+
+
+
+    <!-- contenido cambiante -->
+
+    {% block contenido %}
+    <!-- carousel -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <br><br>
+                <img src="{% static '/img/imgLanding/slides/1.png' %}" class="d-block w-80 mx-auto d-block" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <br><br>
+                <img src="{% static '/img/imgLanding/slides/2.png' %}" class="d-block w-80 rounded mx-auto d-block" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <br><br>
+                <img src="{% static '/img/imgLanding/slides/3.png' %}" class="d-block w-80 rounded mx-auto d-block" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden"></span>
+        </button>
+    </div>
+    <br>
+
+    <div class="text-center">
+        <img src="{% static 'img/imgLanding/banner/banner1.png' %}" class="img-fluid rounded">
+
+    </div>
+
+
+
+
+
+    <!-- contenido 1-->
+    <div class="container contenido">
+        <hr class="divisor-bienvenida">
+
+
+
+        <div class="row contenido-main">
+            <div class="col-md-5 ">
+                <img src="{% static 'img/imgLanding/img/hands.png' %}" class="img-fluid hover12 rounded" alt="">
+
+            </div>
+
+            <div class="col-md-7">
+
+                <h2 class="encabezados">MISIÓN</h2>
+                <p>Proporcionar el confort de cada uno de nuestros residentes, dependiendo de las necesidades que estos requieran en las distintas etapas de su vida adulta.</p>
+                <p>Residencia San Ignacio tambien tiene por objetivo poner al alcance de la comunidad en general lugares de encuentro parrealizar actividades de desarrollo personal, espiritual e intelectual. Estamos abiertos a entidades religiosas, educacionales,
+                    públicas, privadas y recibimos en nuestras instalaciones a niños, jóvenes y adultos quienes encontrarán en nuestras casas una cálida acogida y satisfactoria estadía.</p>
+                <p>¡Nuestra principal prioridad es el cuidado y confort de nuestros Residentes!</p>
+            </div>
+        </div>
+
+        <hr class="divisor-bienvenida">
+
+
+
+        <div class="row contenido-main">
+            <div class="col-md-7">
+                <h1 class="encabezados">NUESTROS SERVICIOS</h1>
+                <h4 class="textos"><b>Cuidados las 24 horas del día</b></h4>
+                <p>Contamos con personal capacitado las 24 horas del día, velado por el cuidado y atención de nuestros Residentes.</p>
+                <h4 class="textos"><b>Médico 3 veces al mes</b></h4>
+                <p>Un médico evaluará tres veces al mes a cada uno de nuestros residentes. En el caso de ser necesario es llamado para atención personalizada si así lo requiera alguno de ellos.</p>
+                <h4 class="textos"><b>Otros</b></h4>
+                <p>
+                    <li>Inscripción Cesfam, para beneficios de la comuna.</li>
+                    <li>Comodidades de un hogar, ya sea teléfono, internet, tv cable, entre otros.</li>
+                    <li>Servicio de lavandería</li>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img src="{% static 'img/imgLanding/img/meds.png' %}" class="img-fluid hover12 rounded" alt="">
+
+            </div>
+        </div>
+        <hr class="divisor-bienvenida">
+        <div class="text-center shadow-sm ">
+            <a href="contacto.html"><img src="{% static 'img/imgLanding/banner/banner2.png' %}" class="img-fluid rounded mb-5 "></a>
+
+        </div>
+
+
+    </div>
+    </div>
+
+
+
+
+
+
+    {% endblock contenido %}
+
+
+</body>
+
+</html>

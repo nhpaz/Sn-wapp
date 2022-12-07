@@ -1,0 +1,108 @@
+{% extends "templatesLanding/base.html" %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
+    <title>Perfil</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contenido %}
+
+    <div class="container-fluid py-5">
+
+        <div class="row">
+            <div class="col-3">
+                <div class="card card-body shadow-sm">
+                    <div class="text-center">
+                        <h1>Menu</h1>
+                        <hr>
+                    </div>
+                    <div>
+                        <div>
+                            {% if user.is_cliente %}
+                            <a href="{% url 'perfil' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'perfil' %}  active {% endif %} ">Mis datos</a>
+                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Residentes</a>
+                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a>
+                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a>
+                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a>
+                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Opcion</a> {% endif %}
+
+                        </div>
+
+                        <div>
+                            {% if user.is_medico %}
+
+                            <a href="#" class="list-group-item list-group-item-action active">Mis datos</a>
+                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Residentes</a>
+                            <a href="#" class="list-group-item list-group-item-action">Contrato</a>{% endif %}
+
+                        </div>
+
+                        <div>
+                            {% if user.is_admin %}
+                            <a href="#" class="list-group-item list-group-item-action active">Mis datos</a>
+                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Residentes</a>
+                            <a href="#" class="list-group-item list-group-item-action">Servicios</a> {% endif %}
+
+                        </div>
+                        <div class="pt-5 pb-3">
+                            <hr>
+                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Avisos legales</a>
+                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Reglamento interno</a>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="col-9">
+
+                <div class="card card-body shadow-sm">
+
+                    {% block contendioPerfil %} {% endblock contendioPerfil %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+    {% endblock contenido %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

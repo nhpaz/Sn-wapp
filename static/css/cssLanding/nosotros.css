@@ -1,0 +1,14 @@
+.img-header {
+    background: url(../../img/imgLanding/banner/banner6.png)no-repeat center;
+    height: 320px;
+    background-color: black;
+    background-size: cover;
+}
+
+#img2 {
+    padding-left: 60px;
+}
+
+#img3 {
+    padding-left: 100px;
+}

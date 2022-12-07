@@ -1,0 +1,94 @@
+{% extends "templatesLanding/base.html" %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
+    <title>Perfil</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contenido %}
+
+    <div class="container-fluid p-2">
+        <div class="row y-5">
+
+            <div class="col-md-3  card card-body">
+
+                <h2 class="text-center mt-4">Menu</h2>
+                <hr>
+                <div class="list-group mb-5">
+                    {% if user.is_medico %}
+
+                    <a href="#" class="list-group-item list-group-item-action active">Mis datos</a>
+                    <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Pacientes</a>
+                    <a href="#" class="list-group-item list-group-item-action">Contrato</a> {% endif %}
+
+                    <div class="mb-5 mt-5">
+
+
+                    </div>
+                    <div class="mb-5 mt-5">
+
+                    </div>
+                    <hr class=" mb-5 mt-5 ">
+
+                </div>
+            </div>
+            <div class="col-md-9 ">
+
+                <div class="card ">
+                    {% if user.is_cliente %}
+                    <h1> Hola cliente {{user.first_name}}</h1>
+                    <h2>{{user.last_name}} {{user.rut}}</h2>
+
+                    <form action=" " method="POST ">
+                        {% csrf_token %} {{residenteForm}}
+                        <button>enviar</button>
+
+                    </form>
+                    {{error}} {% for re in residenteData %}
+                    <h2>{{re.rut}} {{re.nombre}} {{re.apellido}} </h2>
+                    {% endfor %} {% endif %} {% if user.is_medico %}
+                    <h1>Hola Dr. {{user.first_name}} {{user.last_name}} {{user.rut}}
+                    </h1>
+
+
+                    {% endif %} {% if user.is_admin %}
+                    <h1>Hola administrador {{user.first_name}} </h1>
+                    <h2>{{user.last_name}} {{user.rut}}</h2>
+
+                    {% endif %}
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    {% endblock contenido %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

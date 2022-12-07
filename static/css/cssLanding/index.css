@@ -1,0 +1,79 @@
+.logotipo {
+    max-height: 45px;
+    max-width: 45px;
+}
+
+.nav-link b {
+    color: #4283b4;
+}
+
+#espacio {
+    margin-right: 20px;
+    padding-right: 20px;
+}
+
+.divisor-bienvenida {
+    margin: 2rem 0;
+    color: #4283b4;
+    border: solid 1px #4283b4;
+}
+
+.hover12 {
+    opacity: 1;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.hover12:hover {
+    opacity: .5;
+}
+
+.encabezados {
+    font-family: 'EB Garamond', serif;
+}
+
+.textos {
+    font-family: 'Noto Serif', serif;
+}
+
+.contenido-body {
+    background-color: #f5fcff;
+}
+
+.casa-footer h3 {
+    margin: 20px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 24px;
+    font-weight: 500;
+    padding-bottom: 9px;
+}
+
+.casa-footer {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background-color: #333;
+    color: #d6d6d6;
+}
+
+#label_name {
+    color: black;
+    position: relative;
+    left: 50%;
+}
+
+.campos_texto {
+    position: relative;
+    left: 40%;
+}
+
+.date_name {
+    position: relative;
+    left: 48%;
+}
+
+#textoDiv {
+    text-align: center;
+    position: relative;
+    right: 19%;
+    top: -65px
+}

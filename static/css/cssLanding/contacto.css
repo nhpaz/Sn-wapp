@@ -1,0 +1,17 @@
+.img-header {
+    background: url(../../img/imgLanding/banner/banner3.png)no-repeat center;
+    height: 360px;
+    background-color: black;
+    background-size: cover;
+}
+
+.btnSend {
+    color: white;
+    background-color: rgb(40, 100, 169);
+    border: solid 1px rgb(40, 100, 169);
+    border-radius: 4px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
