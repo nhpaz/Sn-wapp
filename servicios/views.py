@@ -58,6 +58,11 @@ def seguridad(request):
     
     return render(request,'templatesServicios/seguridad.html')
 
+
+def Pagos(request):
+    
+    return render(request,'templatesServicios/pagos.html')
+
         
         
     

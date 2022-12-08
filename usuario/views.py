@@ -60,7 +60,7 @@ def signup(request):
             usuario.cliente.save()
             login(request,usuario)
             messages.success(request, 'El registro se ha realizado con éxito')
-            time.sleep(0.5)
+            time.sleep(2)
             return redirect('perfil')
             
         else:
@@ -77,31 +77,54 @@ def perfil(request):
 
     if request.method == 'GET':
 
-
         return render(request,'templatesUsuario/perfil.html')
-
-            
     
     else:
         
         if usuario_actual.is_cliente:
-            print(usuario_actual.id)
+            try:
+                usuario = Usuario.objects.get(pk=usuario_actual.id)
+                usuario.first_name = request.POST['first_name']
+                usuario.last_name = request.POST['last_name']
+                usuario.telefono = request.POST['telefono']
+                usuario.email = request.POST['email']
+                
+                usuario.cliente.direccion = request.POST['direccion']
+                usuario.cliente.save()
+                usuario.save()
+                return redirect('perfil')
+
+            except:
+                return render(request,'templatesUsuario/perfil.html',{'error':'Porfavor, rellene los campos requeridos'})
+
+                
+            
+        else:
             usuario = Usuario.objects.get(pk=usuario_actual.id)
             usuario.first_name = request.POST['first_name']
             usuario.last_name = request.POST['last_name']
             usuario.telefono = request.POST['telefono']
             usuario.email = request.POST['email']
-            
-            usuario.cliente.direccion = request.POST['direccion']
-            usuario.cliente.save()
             usuario.save()
             
-        else:
-            print('error')
+            return redirect('perfil')
         
         
+def borrarPerfil(request):
+    usuario_actual = request.user
+
+    if request.method == 'POST':
+        logout(request)
+
+        usuario = Usuario.objects.get(pk=usuario_actual.id)
+        usuario.delete()
+        return redirect('home')
+    else:
+        return render(request,'templatesUsuario/borrarPerfil.html')
+
+    
         
-        return render(request,'templatesUsuario/perfil.html')
+        
 
         
         

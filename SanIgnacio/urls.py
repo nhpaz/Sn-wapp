@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from landing import views
-from usuario.views import singin,singout,signup,perfil
-from servicios.views import listaResidentes,agregarControl,historial,seguridad
+from usuario.views import singin,singout,signup,perfil,borrarPerfil
+from servicios.views import listaResidentes,agregarControl,historial,seguridad,Pagos
 
 
 urlpatterns = [
@@ -34,13 +34,8 @@ urlpatterns = [
     path('perfil/pacientes/agregarControl/<int:pk>',agregarControl, name='agregarControl'),
     path('perfil/pacientes/historial/<int:pk>',historial, name='historial'),
     path('perfil/seguridad/',seguridad, name='seguridad'),
+    path('perfil/pagos/',Pagos, name='pagos'),
+    path('perfil/delete/',borrarPerfil, name='borrarUsuario'),
 
-
-
-
-
-
-
-    
     
 ]
