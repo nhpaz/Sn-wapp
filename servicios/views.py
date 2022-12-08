@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from usuario.models import Residente, Control_medico
-from .forms import ControlForm
+from .forms import ControlForm,NuevaContraForm
 
 # Create your views here.
 
@@ -56,7 +56,28 @@ def historial(request,pk):
     
 def seguridad(request):
     
-    return render(request,'templatesServicios/seguridad.html')
+    if request.method == 'GET':
+        form = NuevaContraForm(user=request.user)
+    
+        return render(request,'templatesServicios/seguridad.html',{'form':form})
+    
+    else:
+        
+        form = NuevaContraForm(request.user,request.POST)
+        print(form)
+        
+        if form.is_valid():
+            form.save()
+            
+            return redirect('perfil')
+        else:
+            
+
+            
+            return render(request,'templatesServicios/seguridad.html',{'form':form,'Cerror':True})
+
+            
+            
 
 
 def Pagos(request):
