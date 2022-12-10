@@ -1,0 +1,57 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %} {% block titulo %}
+<title>Residentes</title>
+
+{% endblock titulo %}
+
+<body>
+    {% block contendioPerfil %}
+    <div class="text-center mb-5">
+        <h1>
+            Residentes
+            <hr>
+
+        </h1>
+    </div>
+    {% if residenteData %} {% for re in residenteData %} {% if re.esta_activo %}
+    <div class="card card-body p-5 mx-5 mb-3" style="background-color: aliceblue;">
+        <div class="row">
+            <div class="col-md-6">
+                Rut: {{re.rut}}
+
+            </div>
+            <div class="col-md-6">
+                En estadia desde: {{re.fecha_estadia}}
+            </div>
+            <div class="col-md-6">
+                Nombre : {{re.nombre}} {{re.apellido}}
+
+            </div>
+            <div class="col-6">
+
+
+            </div>
+
+        </div>
+
+    </div>
+    {% else %}
+    <div class="card card-body p-5 mx-5 mb-3" style="background-color: aliceblue;">
+        <h4>Estamos procesando su solicitud, pronto con contactaremos con usted...</h4>
+
+    </div>
+
+    {% endif %} {% endfor %} {% else %}
+    <h2>Por el momento no tienes recidentes</h2>
+
+    {% endif %}
+    <form action="" method="POST" class="text-center">
+        {% csrf_token %}
+        <h3>Agregar un nuevo residente</h3>
+        <button type="submit" class="btn btn-primary">Aqui</button>
+
+    </form>
+    {% endblock contendioPerfil %}
+
+
+
+</body>

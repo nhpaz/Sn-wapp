@@ -1,0 +1,46 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %} {% block titulo %}
+<title>Peticiones</title>
+
+{% endblock titulo %}
+
+
+<body>
+    {% block contendioPerfil %}
+    <div class="text-center">
+        <h1>Peticiones</h1>
+        <hr>
+    </div>
+
+    <div class="table-responsive-sm" style="  overflow: scroll;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Estado</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for p in pData %}
+
+                <tr>
+                    <th scope="row">{{p.fecha_peticion}}</th>
+                    {% if p.esta_aceptado %}
+                    <td>Aceptado </td>
+                    {% else %}
+                    <td>En proceso </td>
+                    {% endif %}
+                    <td><a class="btn btn-primary" href="../peticiones/detalles/{{p.id}}">Ver detalle</a></td>
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% endblock contendioPerfil %}
+</body>

@@ -14,7 +14,7 @@ from .managers import UsuarioManager
 
 class Usuario(AbstractUser):
     username = None
-    rut = models.CharField(max_length=10,unique=True,validators=[RegexValidator(regex='^[0-9]+-[0-9kK]{1}$',message='El rut debe de ser sin puntos y con guion'),ValidacionRut])
+    rut = models.CharField(max_length=12,unique=True,validators=[RegexValidator(regex='^[0-9]+-[0-9kK]{1}$',message='El rut debe de ser sin puntos y con guion'),ValidacionRut])
     
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(max_length=36)
@@ -53,11 +53,14 @@ class Admin(models.Model):
     
     
 class Residente(models.Model):
-    rut = models.CharField(max_length=12, unique=True)
+    rut = models.CharField(max_length=12, unique=True,validators=[RegexValidator(regex='^[0-9]+-[0-9kK]{1}$',message='El rut debe de ser sin puntos y con guion'),ValidacionRut])
     nombre = models.CharField(max_length=36)
     apellido = models.CharField(max_length=36)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,related_name='residente')
     fecha_estadia = models.DateTimeField(default=timezone.now)
+    enfermedad = models.TextField(null=True)
+    medicamento = models.TextField(null=True)
+    esta_activo = models.BooleanField(default=False)
 
     
     
@@ -68,3 +71,11 @@ class Control_medico(models.Model):
     tratamiento=models.TextField(max_length=300)
     residente = models.ForeignKey(Residente, on_delete=models.CASCADE)
     medico = models.ForeignKey(Medico,on_delete=models.DO_NOTHING)
+
+class PeticionResidente(models.Model):
+    esta_aceptado = models.BooleanField(default=False)
+    fecha_peticion= models.DateField(default=timezone.now)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,related_name='cliente')
+    residente = models.ForeignKey(Residente, on_delete=models.CASCADE) 
+
+    

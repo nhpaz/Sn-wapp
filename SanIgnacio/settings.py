@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'landing',
     'servicios',
     'crispy_forms',
+    'administracion',
     
 ]
 
@@ -88,7 +89,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sanignaciodb',
         'USER': 'root',
-        'PASSWORD': ''
+        'PASSWORD': '',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+
+        }
     }
 }
 

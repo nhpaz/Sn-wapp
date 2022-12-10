@@ -17,25 +17,37 @@ from django.contrib import admin
 from django.urls import path
 from landing import views
 from usuario.views import singin,singout,signup,perfil,borrarPerfil
-from servicios.views import listaResidentes,agregarControl,historial,seguridad,Pagos
-
+from servicios.views import listaPacientes,agregarControl,historial,seguridad,miPagos,miResidente,miSolicitud
+from administracion.views import peticiones,pDetalle
 
 urlpatterns = [
+    ###Landing
     path('admin/', admin.site.urls),
     path('',views.home, name='home'),
     path('nosotros/',views.nosotros, name='nosotros'),
     path('contacto/',views.contacto, name='contacto'),
     path('servicios/',views.servicios, name='servicios'),
+    ###Usuario
     path('login/',singin, name='login'),
     path('logout/',singout, name='logout'),
     path('registro/',signup, name='registro'),
     path('perfil/',perfil, name='perfil'),
-    path('perfil/pacientes/',listaResidentes, name='listaResidente'),
+    ##Servicios
+    path('perfil/pacientes/',listaPacientes, name='listaPacientes'),
     path('perfil/pacientes/agregarControl/<int:pk>',agregarControl, name='agregarControl'),
     path('perfil/pacientes/historial/<int:pk>',historial, name='historial'),
     path('perfil/seguridad/',seguridad, name='seguridad'),
-    path('perfil/pagos/',Pagos, name='pagos'),
+    path('perfil/miPagos/',miPagos, name='miPagos'),
     path('perfil/delete/',borrarPerfil, name='borrarUsuario'),
+    path('perfil/miResidente/',miResidente, name='miResidente'),
+    path('perfil/miResidente/solicitud',miSolicitud, name='miSolicitud'),
+
+
+    ##Administracion
+    path('perfil/peticiones/',peticiones, name='peticiones'),
+    path('perfil/peticiones/detalles/<int:pk>',pDetalle, name='pDetalle'),
+
+
 
     
 ]

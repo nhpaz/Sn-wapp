@@ -25,8 +25,7 @@
         </thead>
         <tbody>
 
-            {% for re in residenteData %}
-
+            {% for re in residenteData %} {% if re.esta_activo %}
             <tr>
                 <th scope="row">{{re.rut}}</th>
                 <td>{{re.nombre}}</td>
@@ -35,7 +34,7 @@
                 <td><button class="btn btn-primary"><a style="color:white  ;  text-decoration: none;" href="../pacientes/agregarControl/{{re.id}}">Agregar control</a></button></td>
             </tr>
 
-            {% endfor %}
+            {% endif %} {% endfor %}
         </tbody>
 
     </table>

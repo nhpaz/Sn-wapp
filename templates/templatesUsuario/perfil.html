@@ -80,7 +80,7 @@
             </div>
 
 
-
+            {% endif %}
 
 
 
@@ -110,18 +110,11 @@
 
                 </div>
 
-
-
-
-
-
-
-
-
-
             </div>
-            {% endif %}
+
+        </form>
     </div>
+
     <div>
         {% if user.is_admin %}
         <h1> Hola administrador {{user.first_name}}</h1>

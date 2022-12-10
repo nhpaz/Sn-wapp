@@ -1,0 +1,76 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %} {% block titulo %}
+<title>Peticiones</title>
+
+{% endblock titulo %}
+
+
+<body>
+    {% block contendioPerfil %}
+    <div class="text-center">
+        <h1>Detalle</h1>
+        <hr>
+    </div>
+
+    <div class="card card-body ">
+        <div class="text-center">
+            <h4>Datos de residente</h4>
+            <hr>
+            <div class="row text-start">
+                <div class="col-md-12">Rut: {{pData.residente.rut}}</div>
+                <div class="col-md-6">Nombre: {{pData.residente.nombre}}</div>
+                <div class="col-md-6">Apellidos: {{pData.residente.apellido}}</div>
+                <div class="col-md-6">Enfermedades: {{pData.residente.enfermedad}}</div>
+                <div class="col-md-6">Medicamentos: {{pData.residente.medicamento}}</div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card card-body my-3">
+        <div class="text-center">
+            <h4>Datos de tutor</h4>
+            <hr>
+            <div class="row text-start">
+                <div class="col-md-12">Rut: {{pData.cliente.usuario.rut}}</div>
+                <div class="col-md-6">Nombre: {{pData.cliente.usuario.first_name}}</div>
+                <div class="col-md-6">Apellidos: {{pData.cliente.usuario.last_name}}</div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="card card-body ">
+        <div class="text-center">
+            <h4>Datos de contacto</h4>
+            <hr>
+            <div class="row text-start">
+                <div class="col-md-6">Email: {{pData.cliente.usuario.email}}</div>
+                <div class="col-md-6">Telefono: {{pData.cliente.usuario.telefono}}</div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row pt-3 px-5">
+        <div class="col text-start">
+            <a class="btn btn-danger" href="{% url 'peticiones' %}">Volver</a>
+
+
+        </div>
+        <div class="col text-end    ">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary" type="submit">Aprobar</button>
+            </form>
+
+        </div>
+
+
+
+    </div>
+
+    {% endblock contendioPerfil %}
+</body>

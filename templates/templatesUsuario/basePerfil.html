@@ -28,19 +28,18 @@
                         <!--Cliente-->
 
                         {% if user.is_cliente %}
-                        <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Residentes</a>
-                        <a href="{% url 'pagos'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'pagos' %}  active {% endif %}">Pagos</a> {% endif %}
+                        <a href="{% url 'miResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'miResidente'  %}  active {% endif %}">Residentes</a>
+                        <a href="{% url 'miPagos'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'pagos' %}  active {% endif %}">Pagos</a> {% endif %}
 
                         <!--Medico-->
                         {% if user.is_medico %}
 
-                        <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Pacientes</a>
+                        <a href="{% url 'listaPacientes'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Pacientes</a>
                         <a href="#" class="list-group-item list-group-item-action">Contrato</a>{% endif %}
                         <!--Administrador-->
                         {% if user.is_admin %}
-                        <a href="#" class="list-group-item list-group-item-action active">Mis datos</a>
-                        <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Residentes</a>
-                        <a href="#" class="list-group-item list-group-item-action">Servicios</a> {% endif %}
+                        <a href="{% url 'peticiones' %}" class="list-group-item list-group-item-action 
+                        {% if request.resolver_match.url_name == 'peticiones'  %}  active {% endif %} {% if request.resolver_match.url_name == 'pDetalle'  %}  active {% endif %}">Peticiones</a> {% endif %}
 
 
                         <!--Comun-->
@@ -49,8 +48,8 @@
 
                         <div class="pt-5 pb-3">
                             <hr>
-                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Avisos legales</a>
-                            <a href="{% url 'listaResidente'  %}" class="list-group-item list-group-item-action">Reglamento interno</a>
+                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Avisos legales</a>
+                            <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action">Reglamento interno</a>
 
                         </div>
 
