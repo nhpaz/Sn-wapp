@@ -1,0 +1,59 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <title>Clientes</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contendioPerfil %}
+
+    <div class="text-center">
+        <h1>Clientes</h1>
+        <hr>
+    </div>
+    <div class="text-end me-5">
+        <a class="btn btn-primary btn-sm" href="{% url 'agregarCliente' %}">Agregar cliente</a>
+    </div>
+    <hr> {% if mensaje_exito %}
+    <div alert alert-success>
+        {{mensaje_exito}}
+
+    </div>
+
+    {% else %} {% endif %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Rut</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for c in clientesData %}
+
+            <tr>
+                <th scope="row">{{c.id}}</th>
+                <td>{{c.usuario.rut}} </td>
+                <td>{{c.usuario.first_name}} </td>
+                <td>{{c.usuario.last_name}} </td>
+                <td><a class="btn btn-primary btn-sm" href="../clientes/modificar/{{c.id}}">Modificar</a></td>
+
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+
+    </table> {% endblock contendioPerfil %}
+</body>

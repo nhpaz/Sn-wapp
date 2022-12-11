@@ -5,11 +5,57 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 
 
 class UsuarioForm(UserCreationForm):
+    password1 = forms.CharField(
+    label="Contraseña",
+    widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "class": "form-control",'placeholder':'Nueva contraseña'}),
+    )
+    
+    password2 = forms.CharField(
+    label="Confirma contraseña",
+    widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "class": "form-control",'placeholder':'Confirmar nueva contraseña'}),
+    )
+    first_name = forms.CharField(
+    label= "Nombre",
+    widget=TextInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Nombre',
+                'required pattern':"[a-zA-Z]+(?:\s[a-zA-Z]+)?",
+                'title':"Solamente Letras",
+                })
+    )
+    
+    last_name = forms.CharField(
+    label="Apellidos",
+    widget= TextInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Apellidos',
+                'required pattern':"[a-zA-Z]+(?:\s[a-zA-Z]+)?",
+            })
+    )
+        
     
     class Meta:
         model = Usuario
         fields = ("rut","first_name",'last_name','email')
 
+        widgets = {
+
+            'rut': TextInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Rut: xxxxxxxx-x',
+                'title':"Solamente Letras",
+            }),
+   
+            'email': TextInput(attrs={
+                'class': "form-control form-control",
+                'placeholder': 'Correo electronico',
+                'type':"email",
+            })
+
+            }
+        
+        
+        
 class MedicoForm(forms.ModelForm):
     
     class Meta:
@@ -22,6 +68,11 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ("direccion",) 
+        widgets = {
+            'direccion': TextInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Dirección',
+                })}
         
 class ResidenteForm(forms.ModelForm):
     class Meta:

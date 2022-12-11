@@ -11,7 +11,7 @@ def crear_cliente(sender, instance, created, **kwargs):
         Cliente.objects.get_or_create(usuario = instance)
     if instance.is_medico == True:
         Medico.objects.get_or_create(usuario = instance)            
-    else:
+    if  instance.is_admin == True:
         Admin.objects.get_or_create(usuario = instance)
                 
         
@@ -28,7 +28,7 @@ def guardar_cliente( sender,instance, **kwargs):
         instance.medico.save()
         print('-usuario medico-')
 
-    else:
+    if  instance.is_admin:
         instance.admin.save()
         print('-usuario admin-')
 

@@ -1,0 +1,58 @@
+{% extends "templatesLanding/base.html" %} {% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
+    <title>Confirmación</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contenido %}
+    <div class="text-center pt-5">
+        <h1>¿Estas seguro de borrar esta cuenta?</h1>
+        <h2>Está acción no se puede deshacer</h2>
+        <h3>Piensatelo</h3>
+        <hr>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit">Si</button>
+                    </form>
+
+
+                </div>
+
+                <div class="col">
+                    <a class="btn btn-danger" href="{% url 'clientes' %}">No</a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div style="min-height: 300px;">
+
+        </div>
+
+
+    </div>
+
+    {% endblock contenido %}
+
+
+
+
+</body>

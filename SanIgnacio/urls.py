@@ -18,7 +18,7 @@ from django.urls import path
 from landing import views
 from usuario.views import singin,singout,signup,perfil,borrarPerfil
 from servicios.views import listaPacientes,agregarControl,historial,seguridad,miPagos,miResidente,miSolicitud
-from administracion.views import peticiones,pDetalle
+from administracion.views import peticiones,pDetalle,admins,clientes,medicos,agregarCliente,modificarCliente,borrarUsuario,cambiarContra
 
 urlpatterns = [
     ###Landing
@@ -45,9 +45,18 @@ urlpatterns = [
 
     ##Administracion
     path('perfil/peticiones/',peticiones, name='peticiones'),
-    path('perfil/peticiones/detalles/<int:pk>',pDetalle, name='pDetalle'),
+    path('perfil/peticiones/detalles/<pk>',pDetalle, name='detalle'),
+
+    path('perfil/clientes/',clientes, name='clientes'),
+    path('perfil/clientes/agregar/',agregarCliente, name='agregarCliente'),
+    path('perfil/clientes/modificar/<pk>',modificarCliente, name='modificarCliente'),
+    path('perfil/usuarios/borrar/<pk>',borrarUsuario, name='borrarUsuario'),
+    path('perfil/usuarios/cambiarContrasenia/<pk>',cambiarContra, name='cambiarContra'),
 
 
 
-    
+
+    path('perfil/medicos/',medicos, name='medicos'),
+    path('perfil/administradores/',admins, name='admins'),
+
 ]
