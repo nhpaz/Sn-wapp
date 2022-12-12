@@ -1,7 +1,7 @@
 {% extends "templatesUsuario/basePerfil.html" %}{% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     {% block titulo %}
@@ -15,9 +15,31 @@
     {% block contendioPerfil %}
 
     <div class="text text-center" style="color: rgb(89, 79, 79);">
-        <h1>Mis datos</h1>
+        <h1>Modificar datos</h1>
         <hr>
     </div>
+
+    {% if uData.is_cliente %}
+    <div class="text-start">
+        <a class="btn btn-primary" href="{% url 'clientes' %}">volver</a>
+        <hr>
+    </div>
+
+    {% endif %} {% if uData.is_medico %}
+    <div class="text-start">
+        <a class="btn btn-primary" href="{% url 'medicos' %}">volver</a>
+        <hr>
+    </div>
+
+    {% endif %} {% if uData.is_admin%}
+    <div class="text-start">
+        <a class="btn btn-primary" href="{% url 'admins' %}">volver</a>
+        <hr>
+    </div>
+
+    {% endif %}
+
+
 
     <div>
 
@@ -27,21 +49,22 @@
             <div class="ms-3">
                 <h6>Datos Personales</h6>
             </div>
+
             <div class="card card-body mb-4 shadow-sm">
                 <div class="row">
                     <div class="col-md-12 mb-3 mt-2">
                         <label for="">Rut:</label>
-                        <input type="text" placeholder="{{user.rut}}" class="form-control" readonly>
+                        <input type="text" placeholder="{{uData.rut}}" class="form-control" readonly>
                     </div>
 
                     <div class="col-md-6 mb-3 ">
                         <label for="first_name">Nombre:</label>
-                        <input type="text" name="first_name" value="{{user.first_name}}" placeholder="Nombre" class="form-control" required pattern="[a-zA-Z]+(?:\s[a-zA-Z]+)?" title="Solamente Letras">
+                        <input type="text" name="first_name" value="{{uData.first_name}}" placeholder="Nombre" class="form-control" required pattern="[a-zA-Z]+(?:\s[a-zA-Z]+)?" title="Solamente Letras">
                     </div>
 
                     <div class="col-md-6 mb-3 ">
                         <label for="last_name">Apellidos:</label>
-                        <input type="text" name="last_name" value="{{user.last_name}}" placeholder="Apellidos" class="form-control" required pattern="[a-zA-Z]+(?:\s[a-zA-Z]+)?" title="Solamente Letras">
+                        <input type="text" name="last_name" value="{{uData.last_name}}" placeholder="Apellidos" class="form-control" required pattern="[a-zA-Z]+(?:\s[a-zA-Z]+)?" title="Solamente Letras">
                     </div>
                 </div>
 
@@ -54,18 +77,17 @@
                 <div class="row">
                     <div class="col-md-6 mt-2 mb-3 ">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" value="{{user.email}}" placeholder="Correo Electrónico" class="form-control" required>
+                        <input type="email" name="email" value="{{uData.email}}" placeholder="Correo Electrónico" class="form-control" required>
                     </div>
                     <div class="col-md-6 mt-2 mb-3">
                         <label for="last_name">Telefono:</label>
-                        <input type="text" name="telefono" value="{{user.telefono}}" placeholder="Teléfono" class="form-control" required pattern="[0-9]{9}" title="Ejemplo: 912345678">
+                        <input type="text" name="telefono" value="{{uData.telefono}}" placeholder="Teléfono" class="form-control" required pattern="[0-9]{9}" title="Ejemplo: 912345678">
                     </div>
                 </div>
             </div>
 
 
-
-            {% if user.is_cliente %}{% csrf_token %}
+            {% if uData.is_cliente %}
             <div class="ms-3">
                 <h6>Dirección</h6>
             </div>
@@ -75,13 +97,12 @@
                 <div class="row">
                     <div class="col-12 mt-2 mb-3 ">
                         <label for="direccion">Direccion:</label>
-                        <input type="text" name="direccion" value="{{user.cliente.direccion}}" placeholder="Direccion" class="form-control">
+                        <input type="text" name="direccion" value="{{uData.cliente.direccion}}" placeholder="Direccion" class="form-control">
                     </div>
                 </div>
             </div>
 
-
-            {% endif %} {% if user.is_medico %}
+            {% endif %} {% if uData.is_medico %}
             <div class="ms-3">
                 <h6>Especialidad</h6>
             </div>
@@ -91,7 +112,7 @@
                 <div class="row">
                     <div class="col-12 mt-2 mb-3 ">
                         <label for="especialidad">Especialidad:</label>
-                        <input type="text" name="especialidad" readonly placeholder="{{user.medico.especialidad}}" class="form-control">
+                        <input type="text" name="especialidad" value="{{uData.medico.especialidad}}" placeholder="Especialidad" class="form-control">
                     </div>
                 </div>
             </div>
@@ -104,13 +125,13 @@
             <div class="card card-body shadow-sm mb-4">
                 <div class="row">
                     <div class="col-12 mt-2 mb-3 ">
-                        <label for="sueldo">Sueldo:</label>
-                        <input type="text" name="sueldo" readonly placeholder="{{user.medico.sueldo}}" class="form-control">
+                        <label for="sueldo">sueldo:</label>
+                        <input type="text" name="sueldo" value="{{uData.medico.sueldo}}" placeholder="Sueldo" class="form-control">
                     </div>
                 </div>
             </div>
 
-            {% endif %} {% if user.is_admin %}
+            {% endif %} {% if uData.is_admin %}
             <div class="ms-3">
                 <h6>Sueldo</h6>
             </div>
@@ -120,7 +141,7 @@
                 <div class="row">
                     <div class="col-12 mt-2 mb-3 ">
                         <label for="sueldo">Sueldo:</label>
-                        <input readonly type="text" name="sueldo" placeholder="{{user.admin.sueldo}}" class="form-control">
+                        <input type="text" name="sueldo" value="{{uData.admin.sueldo}}" placeholder="Sueldo" class="form-control">
                     </div>
                 </div>
             </div>
@@ -130,16 +151,40 @@
 
 
 
+
+
+
+
+
+
             <div class="container-fluid">
                 <div class="row">
                     <div style="color: rgb(177, 17, 17);">
                         {{error}}
                     </div>
+                    {% if uData.is_cliente %}
+                    <div class="col">
+                        <div class="text-start ">
+                            <a class="btn btn-info" style="color: rgb(255, 243, 243);" href="../../clientes/agregarResidente/{{uData.cliente.id}}">Agregar Residente</a>
+
+
+                        </div>
+
+                    </div>
+                    {% endif %}
 
 
                     <div class="col">
                         <div class="text-start ">
-                            <button class="btn btn-danger "><a href="{% url 'borrarUsuario' %}" style="text-decoration: none; color: white;">Eliminar Cuenta</a></button>
+                            <a class="btn btn-danger " href="../../usuarios/borrar/{{uData.id}}">Eliminar Cuenta</a>
+
+
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="text-center ">
+                            <a class="btn btn-danger " href="../../usuarios/cambiarContrasenia/{{uData.id}}">Cambiar contraseña</a>
 
 
                         </div>
@@ -166,26 +211,12 @@
 
 
 
+
     </form>
 
 
 
-
-
     {% endblock contendioPerfil %}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 

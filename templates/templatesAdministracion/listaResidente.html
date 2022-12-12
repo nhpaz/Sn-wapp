@@ -5,7 +5,7 @@
 
 <head>
     {% block titulo %}
-    <title>Administradores</title>
+    <title>Medicos</title>
 
     {% endblock titulo %}
 </head>
@@ -14,13 +14,9 @@
     {% block contendioPerfil %}
 
     <div class="text-center">
-        <h1>Administradores</h1>
+        <h1>Residente</h1>
         <hr>
     </div>
-    <div class="text-end me-5">
-        <a class="btn btn-primary btn-sm" href="{% url 'agregarAdmin' %}">Agregar administrador</a>
-    </div>
-    <hr>
     <table class="table">
         <thead>
             <tr>
@@ -28,22 +24,20 @@
                 <th scope="col">Rut</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellidos</th>
-                <th scope="col">Sueldo</th>
-
 
             </tr>
         </thead>
         <tbody>
 
-            {% for a in adminsData %}
+            {% for r in residenteData %}
 
             <tr>
-                <th scope="row">{{a.id}}</th>
-                <td>{{a.usuario.rut}} </td>
-                <td>{{a.usuario.first_name}} </td>
-                <td>{{a.usuario.last_name}} </td>
-                <td>{{a.sueldo}} </td>
-                <td><a class="btn btn-primary btn-sm" href="../usuarios/modificar/{{a.usuario.id}}">Modificar</a></td>
+                <th scope="row">{{r.id}}</th>
+                <td>{{r.rut}} </td>
+                <td>{{r.nombre}} </td>
+                <td>{{r.apellido}} </td>
+                <td> </td>
+                <td><a class="btn btn-primary btn-sm" href="../residentes/modificar/{{r.id}}">Ver detalle</a></td>
 
 
             </tr>

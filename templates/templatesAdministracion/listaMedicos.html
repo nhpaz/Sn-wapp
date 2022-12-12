@@ -5,12 +5,50 @@
 
 <head>
     {% block titulo %}
-    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
     <title>Medicos</title>
 
     {% endblock titulo %}
 </head>
 
 <body>
-    {% block contendioPerfil %} {% endblock contendioPerfil %}
+    {% block contendioPerfil %}
+
+    <div class="text-center">
+        <h1>Medicos</h1>
+        <hr>
+    </div>
+    <div class="text-end me-5">
+        <a class="btn btn-primary btn-sm" href="{% url 'agregarMedico' %}">Agregar Medico</a>
+    </div>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Rut</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Especialidad</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for m in medicosData %}
+
+            <tr>
+                <th scope="row">{{m.id}}</th>
+                <td>{{m.usuario.rut}} </td>
+                <td>{{m.usuario.first_name}} </td>
+                <td>{{m.usuario.last_name}} </td>
+                <td>{{m.especialidad}} </td>
+                <td><a class="btn btn-primary btn-sm" href="../usuarios/modificar/{{m.usuario.id}}">Modificar</a></td>
+
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+
+    </table> {% endblock contendioPerfil %}
 </body>

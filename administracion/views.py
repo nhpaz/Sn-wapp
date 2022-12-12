@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
-from usuario.models import PeticionResidente, Usuario,Cliente,Medico
-from usuario.forms import UsuarioForm,ClienteForm
+from usuario.models import PeticionResidente, Usuario,Cliente,Medico,Admin,Residente
+from usuario.forms import UsuarioForm,ClienteForm,MedicoForm,AdminForm,ResidenteForm,ResidenteFormUpdate
 from servicios.forms import NuevaContraForm
 # Create your views here.
 
@@ -40,7 +40,7 @@ def cambiarContra(request,pk):
     if request.method == 'GET':
         form = NuevaContraForm(user=usuario)
     
-        return render(request,'templatesServicios/seguridad.html',{'form':form})
+        return render(request,'templatesAdministracion/cambiarContra.html',{'form':form})
     
     else:
         form = NuevaContraForm(usuario,request.POST)        
@@ -53,8 +53,71 @@ def cambiarContra(request,pk):
             if usuario.is_medico:
                 return redirect('perfil')
         else:
-            return render(request,'templatesAdministracion/cambiarContraCliente.html',{'form':form,'Cerror':True})
+            return render(request,'templatesAdministracion/cambiarContra.html',{'form':form,'Cerror':True})
 
+def borrar(request,pk):
+    if request.method == 'POST':
+        Usuario = Usuario.objects.get(pk=pk)
+        Usuario.delete()
+        
+        return redirect('clientes')
+    else:
+        return render(request,'templatesAdministracion/borrar.html')
+
+def modificar(request,pk):
+    
+    if request.method == 'GET':
+    
+        uData = Usuario.objects.get(pk=pk)
+        print(request.session)
+    
+        return render(request,'templatesAdministracion/modificar.html',{'uData':uData})
+    
+    else:
+        usuario = Usuario.objects.get(pk=pk)
+        if usuario.is_cliente:
+            try:
+                usuario.first_name = request.POST['first_name']
+                usuario.last_name = request.POST['last_name']
+                usuario.telefono = request.POST['telefono']
+                usuario.email = request.POST['email']            
+                usuario.cliente.direccion = request.POST['direccion']
+                usuario.cliente.save()
+                usuario.save()
+                return redirect('clientes')
+
+            except:
+                return render(request,'templatesAdministracion/modificar.html',{'error':'Porfavor, rellene los campos requeridos','uData':usuario})
+        if usuario.is_medico:
+            try:
+                usuario.first_name = request.POST['first_name']
+                usuario.last_name = request.POST['last_name']
+                usuario.telefono = request.POST['telefono']
+                usuario.email = request.POST['email']            
+                usuario.medico.especialidad = request.POST['especialidad']
+                usuario.medico.sueldo = request.POST['sueldo']
+                usuario.medico.save()
+                usuario.save()
+                return redirect('medicos')
+
+            except:
+                return render(request,'templatesAdministracion/modificar.html',{'error':'Porfavor, rellene los campos requeridos','uData':usuario})
+        if usuario.is_admin:
+            try:
+                usuario.first_name = request.POST['first_name']
+                usuario.last_name = request.POST['last_name']
+                usuario.telefono = request.POST['telefono']
+                usuario.email = request.POST['email']            
+                usuario.admin.sueldo = request.POST['sueldo']
+                print(request.POST)
+                usuario.admin.save()
+                usuario.save()
+                return redirect('admins')
+
+            except:
+                print(request.POST)
+
+                return render(request,'templatesAdministracion/modificar.html',{'error':'Porfavor, rellene los campos requeridos','uData':usuario})
 
 ###CRUD CLIENTES###
 
@@ -74,14 +137,14 @@ def agregarCliente(request):
     if request.method == 'GET':
         cform = ClienteForm
         uform = UsuarioForm
+
         
         return render(request,'templatesAdministracion/agregarCliente.html',{'cform':cform,'uform':uform})
         
     else:
         cform = ClienteForm(request.POST)
         uform = UsuarioForm(request.POST)
-        print(uform)
-        print(cform)
+
         
         
         if cform.is_valid() and uform.is_valid():
@@ -99,42 +162,50 @@ def agregarCliente(request):
             
         return render(request,'templatesAdministracion/agregarCliente.html',{'cform':cform,'uform':uform})
 
-def cambiarContraCliente(request,pk):
-    
+def agregarResidente(request,pk):
     if request.method == 'GET':
-        return render(request,'templatesAdministracion/cambiarContraCliente.html')
-
-def borrarUsuario(request,pk):
-    if request.method == 'POST':
-        Usuario = Usuario.objects.get(pk=pk)
-        Usuario.delete()
+        form = ResidenteForm
         
-        return redirect('clientes')
+        
+        return render(request,'templatesAdministracion/agregarResidente.html',{'form':form})
+        
     else:
-        return render(request,'templatesAdministracion/borrarCliente.html')
-    
-def modificarCliente(request,pk):
-    
-    if request.method == 'GET':
-    
-        cData = Cliente.objects.get(pk=pk)
-    
-        return render(request,'templatesAdministracion/modificarCliente.html',{'cData':cData})
-    
-    else:
-        try:
-            cliente = Cliente.objects.get(pk=pk)
-            cliente.usuario.first_name = request.POST['first_name']
-            cliente.usuario.last_name = request.POST['last_name']
-            cliente.usuario.telefono = request.POST['telefono']
-            cliente.usuario.email = request.POST['email']            
-            cliente.direccion = request.POST['direccion']
-            cliente.usuario.save()
-            cliente.save()
-            return redirect('clientes')
+        form = ResidenteForm(request.POST)
+        if form.is_valid():
+            residente = form.save(commit=False)
+            residente.esta_activo = True
+            residente.cliente_id = pk
+            
+            residente.save()
+            return render(request,'templatesAdministracion/agregarResidente.html',{'form':form ,'exito':'Exito'})
+        else:
+            return render(request,'templatesAdministracion/agregarResidente.html',{'form':form})
 
-        except:
-            return render(request,'templatesAdministracion/modificarCliente.html',{'error':'Porfavor, rellene los campos requeridos'})
+#Residente
+def residentes(request):
+    if request.method == 'GET':
+        residenteData = Residente.objects.all()
+        return render(request,'templatesAdministracion/ListaResidente.html',{'residenteData':residenteData})
+
+def modificarResidente(request,pk):
+    reData = Residente.objects.get(pk=pk)
+    if request.method == 'GET':
+
+        form = ResidenteFormUpdate(instance=reData)
+        return render(request,'templatesAdministracion/modificarResidente.html',{'reData':reData,'form':form})
+
+    else:
+
+        residente = ResidenteFormUpdate(request.POST, instance=reData)
+        print
+        if residente.is_valid():
+            residente.save()
+            return redirect('residentes')
+        else:
+            return render(request,'templatesAdministracion/modificarResidente.html',{'reData':reData,'form':form})
+
+    
+    
 
 ###CRUD MEDICOS###
 
@@ -142,26 +213,92 @@ def medicos(request):
     
     if request.method == 'GET':
     
-        clientesData = Cliente.objects.all()
+        medicosData = Medico.objects.all()
     
-        return render(request,'templatesAdministracion/listaMedicos.html',{'clientesData':clientesData})
+        return render(request,'templatesAdministracion/listaMedicos.html',{'medicosData':medicosData})
     else:
         
         return redirect('perfil')
+
+def agregarMedico(request):
+    
+    if request.method == 'GET':
+        mform = MedicoForm
+        uform = UsuarioForm
+
+        
+        return render(request,'templatesAdministracion/agregarMedico.html',{'uform':uform,'mform':mform})
+        
+    else:
+        mform = MedicoForm(request.POST)
+        uform = UsuarioForm(request.POST)
+
+        
+        
+        if mform.is_valid() and uform.is_valid():
+            usuario = uform.save(commit=False)
+            usuario.is_medico = True
+            usuario.is_cliente = False
+            usuario.save()
+            print(request.POST)
+
+            usuario.medico.especialidad = mform.cleaned_data.get('especialidad')
+            usuario.medico.sueldo = mform.cleaned_data.get('sueldo')
+
+            usuario.medico.save()
+            return redirect('medicos')
+            
+        else:
+            mform = MedicoForm(request.POST)
+            uform = UsuarioForm(request.POST)
+
+            
+        return render(request,'templatesAdministracion/agregarMedico.html',{'mform':mform,'uform':uform})
+
+
 ###CRUD ADMINISTRADORES###
 
 def admins(request):
     
     if request.method == 'GET':
     
-        clientesData = Cliente.objects.all()
+        adminsData = Admin.objects.all()
     
-        return render(request,'templatesAdministracion/listaAdmin.html',{'clientesData':clientesData})
+        return render(request,'templatesAdministracion/listaAdmin.html',{'adminsData':adminsData})
     else:
         
         return redirect('perfil')
     
+def agregarAdmin(request):
     
+    if request.method == 'GET':
+        aform = AdminForm
+        uform = UsuarioForm
+
+        
+        return render(request,'templatesAdministracion/agregarAdmin.html',{'uform':uform,'aform':aform})
+        
+    else:
+        aform = AdminForm(request.POST)
+        uform = UsuarioForm(request.POST)
+
+        
+        
+        if aform.is_valid() and uform.is_valid():
+            usuario = uform.save(commit=False)
+            usuario.is_cliente = False
+            usuario.is_admin = True
+            usuario.save()
+            usuario.admin.sueldo = aform.cleaned_data.get('sueldo')
+            usuario.admin.save()
+            return redirect('admins')
+            
+        else:
+            aform = AdminForm(request.POST)
+            uform = UsuarioForm(request.POST)
+
+            
+        return render(request,'templatesAdministracion/agregarAdmin.html',{'uform':uform,'aform':aform})
 
 
 

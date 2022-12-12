@@ -7,20 +7,20 @@
 <body>
     {% block contendioPerfil %}
     <div class="text-center">
-        <h1>Agregar Cliente</h1>
+        <h1>Agregar Admin</h1>
         <hr>
     </div>
     <div class="text-start">
-        <a class="btn btn-primary" href="{% url 'clientes' %}">volver</a>
+        <a class="btn btn-primary" href="{% url 'admins' %}">volver</a>
         <hr>
     </div>
     <form action="" method="POST">
-        {% csrf_token %} {{uform}} {{cform}}
+        {% csrf_token %} {{uform}} {{aform}}
 
         <div class="mt-5 mb-3 ">
             <div class="row">
                 <div class="col text-end me-5">
-                    <button class="btn btn-primary" type="submit">Agregar Cliente</button>
+                    <button class="btn btn-primary" type="submit">Agregar Admin</button>
 
                 </div>
             </div>

@@ -1,0 +1,34 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% block titulo %}
+    <title>Modificar Residente</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contendioPerfil %}
+    <div class="text-center">
+        <h1>Modificar Residente</h1>
+        <hr>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="text-start ">
+                {{form}}
+
+            </div>
+            <div class="text-end mt-5 me-5">
+                <button class="btn btn-primary" type="submit">Modificar</button>
+
+            </div>
+
+        </form>
+        {{form.errors}}
+
+
+    </div> {% endblock contendioPerfil %}
+</body>

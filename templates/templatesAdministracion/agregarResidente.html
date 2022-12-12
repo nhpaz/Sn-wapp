@@ -1,5 +1,5 @@
 {% extends "templatesUsuario/basePerfil.html" %}{% load static %} {% block titulo %}
-<title>Agregar Cliente</title>
+<title>Agregar Residente</title>
 
 {% endblock titulo %}
 
@@ -7,7 +7,7 @@
 <body>
     {% block contendioPerfil %}
     <div class="text-center">
-        <h1>Agregar Cliente</h1>
+        <h1>Agregar Residente</h1>
         <hr>
     </div>
     <div class="text-start">
@@ -15,20 +15,17 @@
         <hr>
     </div>
     <form action="" method="POST">
-        {% csrf_token %} {{uform}} {{cform}}
-
+        {% csrf_token %} {% if exito %}
+        <div class="alert alert-success">{{exito}}</div> {% endif %} {{form}}
         <div class="mt-5 mb-3 ">
             <div class="row">
                 <div class="col text-end me-5">
-                    <button class="btn btn-primary" type="submit">Agregar Cliente</button>
+                    <button class="btn btn-primary" type="submit">Agregar Residente</button>
 
                 </div>
             </div>
         </div>
 
     </form>
-
-
-
     {% endblock contendioPerfil %}
 </body>

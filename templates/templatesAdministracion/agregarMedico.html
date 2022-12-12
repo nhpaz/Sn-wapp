@@ -1,5 +1,5 @@
 {% extends "templatesUsuario/basePerfil.html" %}{% load static %} {% block titulo %}
-<title>Agregar Cliente</title>
+<title>Agregar Medico</title>
 
 {% endblock titulo %}
 
@@ -7,20 +7,20 @@
 <body>
     {% block contendioPerfil %}
     <div class="text-center">
-        <h1>Agregar Cliente</h1>
+        <h1>Agregar Medico</h1>
         <hr>
     </div>
     <div class="text-start">
-        <a class="btn btn-primary" href="{% url 'clientes' %}">volver</a>
+        <a class="btn btn-primary" href="{% url 'medicos' %}">volver</a>
         <hr>
     </div>
     <form action="" method="POST">
-        {% csrf_token %} {{uform}} {{cform}}
+        {% csrf_token %} {{uform}} {{mform}}
 
         <div class="mt-5 mb-3 ">
             <div class="row">
                 <div class="col text-end me-5">
-                    <button class="btn btn-primary" type="submit">Agregar Cliente</button>
+                    <button class="btn btn-primary" type="submit">Agregar Medico</button>
 
                 </div>
             </div>

@@ -39,13 +39,20 @@
                         <!--Administrador-->
                         {% if user.is_admin %}
                         <a href="{% url 'peticiones' %}" class="list-group-item list-group-item-action 
-                        {% if request.resolver_match.url_name == 'peticiones'  %}  active {% endif %} {% if request.resolver_match.url_name == 'pDetalle'  %}  active {% endif %}">Peticiones</a>
-                        <a href="{% url 'medicos'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'medicos' %}  active {% endif %}">Medicos</a>
+                        {% if request.resolver_match.url_name == 'peticiones'  %}  active {% endif %} 
+                        {% if request.resolver_match.url_name == 'pDetalle'  %}  active {% endif %}">Peticiones</a>
+                        <a href="{% url 'residentes'  %}" class="list-group-item list-group-item-action 
+                        {% if request.resolver_match.url_name == 'residentes' %}  active {% endif %}">Residente</a>
+                        <a href="{% url 'medicos'  %}" class="list-group-item list-group-item-action 
+                        {% if request.resolver_match.url_name == 'medicos' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'agregarMedico' %}  active {% endif %}">Medicos</a>
                         <a href="{% url 'clientes'  %}" class="list-group-item list-group-item-action 
                         {% if request.resolver_match.url_name == 'clientes' %}  active {% endif %}
                         {% if request.resolver_match.url_name == 'modificarCliente' %}  active {% endif %}
                         {% if request.resolver_match.url_name == 'agregarCliente' %}  active {% endif %}">Clientes</a>
-                        <a href="{% url 'admins'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'admins' %}  active {% endif %}">Administradores</a>{% endif %}
+                        <a href="{% url 'admins'  %}" class="list-group-item list-group-item-action
+                        {% if request.resolver_match.url_name == 'agregarAdmin' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'admins' %}  active {% endif %}">Administradores</a>{% endif %}
 
 
                         <!--Comun-->
