@@ -46,11 +46,9 @@ def agregarControl(request,pk):
     
     if request.method =='GET':
     
-        residente = Residente.objects.get(id=pk)
+        residente = Residente.objects.get(pk=pk)
         control_form = ControlForm
         
-        print(request.user.id)
-
         return render(request,'templatesServicios/pacienteControl.html',{'residente': residente ,'form':control_form})
     
 
@@ -62,7 +60,7 @@ def agregarControl(request,pk):
             
             control = control_form.save(commit=False)
             control.residente_id = pk
-            control.medico_id = request.user.id
+            control.medico_id = request.user.medico.id
             control.save()
             return redirect('listaPacientes')
         
@@ -74,7 +72,7 @@ def historial(request,pk):
         controles= Control_medico.objects.filter(residente_id=pk)
         
 
-        return render(request,'templatesServicios/pacientesHistorial.html',{'residente': residente ,'controles':controles})
+        return render(request,'templatesServicios/pacienteHistorial.html',{'residente': residente ,'controles':controles})
     
 ### Modulos Clientes
 

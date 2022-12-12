@@ -33,9 +33,11 @@ urlpatterns = [
     path('registro/',signup, name='registro'),
     path('perfil/',perfil, name='perfil'),
     ##Servicios
+    #pacientes
     path('perfil/pacientes/',listaPacientes, name='listaPacientes'),
     path('perfil/pacientes/agregarControl/<int:pk>',agregarControl, name='agregarControl'),
     path('perfil/pacientes/historial/<int:pk>',historial, name='historial'),
+    #
     path('perfil/seguridad/',seguridad, name='seguridad'),
     path('perfil/miPagos/',miPagos, name='miPagos'),
     path('perfil/delete/',borrarPerfil, name='borrarUsuario'),

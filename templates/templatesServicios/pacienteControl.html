@@ -1,88 +1,41 @@
-{% extends "templatesLanding/base.html" %} {% load static %}
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     {% block titulo %}
-    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
-    <title>Perfil</title>
+    <title>Control medico</title>
 
     {% endblock titulo %}
 </head>
 
 <body>
-    {% block contenido %}
-
-    <div class="row pt-5 pb-5">
-
-        <div class="col-md-3  card">
-
-            <h2 class="text-center mt-4">Menu</h2>
-            <hr>
-            <div class="list-group mb-5">
-
-                <a href="{% url 'perfil'  %}" class="list-group-item list-group-item-action ">Mis datos</a>
-                <a href="#" class="list-group-item list-group-item-action active">Pacientes</a>
-                <a href="#" class="list-group-item list-group-item-action">Contrato</a>
-
-                <div class="mb-5 mt-5">
+    {% block contendioPerfil %}
 
 
-                </div>
-                <div class="mb-5 mt-5">
+    <div class="text-center">
+        <h1>Control de {{residente.nombre}} {{residente.apellido}} Rut: {{residente.rut}} </h1>
 
-                </div>
-                <hr class=" mb-5 mt-5 ">
-
-            </div>
-        </div>
-        <div class="col-9 ">
-
-            <div class="card p-2 ">
-
-                <h1>Control de {{residente.nombre}} {{residente.apellido}} </h1>
-                <h2>Rut: {{residente.rut}}</h2>
-
-                <form action="" method='POST' class="offset-3 pt-5 pb-5">
-                    {% csrf_token %} {{form.as_p}}
-
-                    <button class="btn btn-primary ">  Agregar</button>
-                    <button class="btn btn-primary "> <a style="color: white;  text-decoration: none;" href="{% url 'listaResidente' %}"> Volver</a></button>
-
-
-
-
-
-
-                </form>
-
-
-
-
-            </div>
-
-
-        </div>
-
+        <hr>
     </div>
+    <div class="text-start">
+        <a class="btn btn-primary " href="{% url 'listaPacientes' %}"> Volver</a>
+
+        <hr>
+    </div>
+    <form action="" method='POST' class="mt-2 mb-3">
+        {% csrf_token %}
+        <div class="mx-5">
+            {{form}}
+
+        </div>
+        <div class="text-end me-5 mt-3">
+            <button class="btn btn-primary" type="submit">Agregar</button>
+
+        </div>
 
 
-    {% endblock contenido %}
+    </form>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>
+    {% endblock contendioPerfil %}

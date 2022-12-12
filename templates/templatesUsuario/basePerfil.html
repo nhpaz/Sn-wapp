@@ -34,7 +34,10 @@
                         <!--Medico-->
                         {% if user.is_medico %}
 
-                        <a href="{% url 'listaPacientes'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'listaResidente' %}  active {% endif %}">Pacientes</a>
+                        <a href="{% url 'listaPacientes'  %}" class="list-group-item list-group-item-action 
+                        {% if request.resolver_match.url_name == 'agregarControl' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'listaPacientes' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'historial' %}  active {% endif %}">Pacientes</a>
                         <a href="#" class="list-group-item list-group-item-action">Contrato</a>{% endif %}
                         <!--Administrador-->
                         {% if user.is_admin %}
