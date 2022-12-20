@@ -64,20 +64,27 @@ class UsuarioForm(UserCreationForm):
     
     class Meta:
         model = Usuario
-        fields = ("rut","first_name",'last_name','email')
+        fields = ("rut","first_name",'last_name','email','telefono')
 
         widgets = {
 
             'rut': TextInput(attrs={
                 'class': "form-control",
-                'placeholder': 'Rut: xxxxxxxx-x',
-                'title':"Solamente Letras",
+                'placeholder': 'xxxxxxxx-x',
             }),
    
             'email': TextInput(attrs={
                 'class': "form-control form-control",
                 'placeholder': 'Correo electronico',
                 'type':"email",
+            }),
+   
+            'telefono': NumberInput(attrs={
+                'class': "form-control form-control",
+                'placeholder': 'xxxx-xxx-xxx',
+                'required pattern':'[0-9]{9}',
+                'title':"ejemplo: 123456789",
+
             })
 
             }

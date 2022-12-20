@@ -28,7 +28,12 @@
 
                 <form action="" method="post">
 
-                    {{cliente_form.errors}}{% csrf_token %} {{ usuario_form | crispy }} {{ cliente_form | crispy }}
+                    {{cliente_form.errors}}{% csrf_token %}
+                    <div class="text-start">
+                        {{ usuario_form | crispy }} {{ cliente_form | crispy }}
+
+                    </div>
+
 
 
 
