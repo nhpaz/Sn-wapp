@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import FileResponse, Http404
 from usuario.models import Residente, Control_medico, PeticionResidente,Factura
 from .forms import ControlForm,NuevaContraForm
 from usuario.forms import ResidenteForm
@@ -152,7 +153,11 @@ def miPagosDetalle(request,pk):
         
         
     
-    
+def pdf_reglamento_view(request):
+    try:
+        return FileResponse(open('static\pdf\REGLAMENTO_INTERNO_RSI.pdf', 'rb'), content_type='application/pdf')
+    except FileNotFoundError:
+        raise Http404()
 
 
 

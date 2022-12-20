@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from landing import views
 from usuario.views import singin,singout,signup,perfil,borrarPerfil
-from servicios.views import listaPacientes,agregarControl,historial,seguridad,miPagos,miResidente,miSolicitud,miPagosDetalle
+from servicios.views import listaPacientes,agregarControl,historial,seguridad,miPagos,miResidente,miSolicitud,miPagosDetalle,pdf_reglamento_view
 from administracion.views import peticiones,pDetalle,admins,clientes,medicos,agregarCliente,modificar,borrar,cambiarContra,agregarMedico,agregarAdmin,agregarResidente,residentes,modificarResidente,agregarPago,listaPagos,modificarPago
 
 urlpatterns = [
@@ -56,6 +56,7 @@ urlpatterns = [
     path('perfil/clientes/pagoCliente/<pk>',listaPagos, name='listaPagos'),
     path('perfil/clientes/pagoCliente/agregarPago/<pk>',agregarPago, name='agregarPago'),
     path('perfil/clientes/pagoCliente/modificarPago/<pk>',modificarPago, name='modificarPago'),
+    path('reglamento',pdf_reglamento_view, name='reglamento'),
 
 
 
