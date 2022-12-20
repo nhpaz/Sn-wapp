@@ -1,0 +1,49 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block titulo %}
+    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
+    <title>Detalle</title>
+
+    {% endblock titulo %}
+</head>
+
+<body>
+    {% block contendioPerfil %}
+
+    <div class="text text-center" style="color: rgb(89, 79, 79);">
+        <h1>Detalle</h1>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row card-body shadow-sm">
+            <div class="col-12 my-2">
+                Fecha: {{pagosData.detalle.fecha_creacion}}
+            </div>
+            <div class="col-6">
+                Tipo de pago: {{pagosData.detalle.tipo_pago}}
+            </div>
+            <div class="col-6">
+                Estado: {% if pagosData.estado == True %} Pagado {% else %} Por pagar {% endif %}
+            </div>
+            <div class="card-body shadow-sm row">
+                <div class="col-6">
+                    Servicio: {{pagosData.detalle.servicio.nombre}}
+                </div>
+                <div class="col-6">
+                    Precio: {{pagosData.detalle.servicio.precio}}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+
+
+{% endblock contendioPerfil %}

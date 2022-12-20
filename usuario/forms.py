@@ -1,9 +1,37 @@
-from .models import Usuario,Medico,Cliente,Residente,Admin
+from .models import Usuario,Medico,Cliente,Residente,Admin,Tipo_pago,Factura,DetalleFactura
 from django import forms
 from django.forms import TextInput,Textarea,NumberInput
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 
 
+## Pagos
+
+class FacturaForm(forms.ModelForm):
+    
+    class Meta:
+        model = Factura
+        fields = ("estado",)
+
+
+class TipoPagoForm(forms.ModelForm):
+    
+    class Meta:
+        model = Tipo_pago
+        fields = ("tipo",)
+        widgets = {
+            'tipo': TextInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Tipo',
+                })}
+class DetalleFacturaForm(forms.ModelForm):
+    
+    class Meta:
+        model = DetalleFactura
+        fields = ('servicio','tipo_pago')
+
+
+
+##
 class UsuarioForm(UserCreationForm):
     password1 = forms.CharField(
     label="Contraseña",

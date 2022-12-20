@@ -1,0 +1,29 @@
+[{
+        "model": "usuario.Tipo_pago",
+        "pk": 1,
+        "fields": {
+            "tipo": "Sin pago aun"
+        }
+    },
+    {
+        "model": "usuario.Tipo_pago",
+        "pk": 2,
+        "fields": {
+            "tipo": "Debito"
+        }
+    },
+    {
+        "model": "usuario.Tipo_pago",
+        "pk": 3,
+        "fields": {
+            "tipo": "Credito"
+        }
+    },
+    {
+        "model": "usuario.Tipo_pago",
+        "pk": 4,
+        "fields": {
+            "tipo": "Efectivo"
+        }
+    }
+]

@@ -5,8 +5,7 @@
 
 <head>
     {% block titulo %}
-    <link rel="stylesheet" href="{% static 'css/cssLanding/contacto.css' %}">
-    <title>Perfil</title>
+    <title>Lista pagos</title>
 
     {% endblock titulo %}
 </head>
@@ -14,14 +13,30 @@
 <body>
     {% block contendioPerfil %}
 
-    <div class="text text-center" style="color: rgb(89, 79, 79);">
-        <h1>Portal de Pagos</h1>
+    <div class="text-center">
+        <h1>Lista de pagos de {{usuario.first_name}}</h1>
         <hr>
     </div>
+    <div class="row">
+        <div class="col text-start me-5">
+            <a class="btn btn-primary btn-sm" href="{% url 'clientes' %}">Volver</a>
+
+        </div>
+        <div class="col text-end me-5">
+            <a class="btn btn-primary btn-sm" href="../../clientes/pagoCliente/agregarPago/{{usuario.id}}">Agregar pago</a>
+
+        </div>
+
+    </div>
+
+
+    <hr>
+
 
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Id</th>
                 <th scope="col">Fecha de creacion</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Estado</th>
@@ -33,7 +48,8 @@
             {% for p in pagosData %}
 
             <tr>
-                <th scope="row">{{p.detalle.fecha_creacion}} </th>
+                <th scope="row">{{p.id}}</th>
+                <td>{{p.detalle.fecha_creacion}} </td>
                 <td>{{p.detalle.servicio.precio}} </td>
                 {% if p.estado == True %}
                 <td> Pagado </td>
@@ -41,19 +57,12 @@
                 <td> No pagado </td>
                 {% endif %}
 
-                <td><a class="btn btn-primary btn-sm" href="../miPagos/detalle/{{p.id}}">Ver detalle</a></td>
-                <td><a class="btn btn-primary btn-sm" href="#">Pagar</a></td>
+                <td><a class="btn btn-primary btn-sm" href="../pagoCliente/modificarPago/{{p.id}}">Ver detalle/Modificar</a></td>
 
             </tr>
 
             {% endfor %}
         </tbody>
 
-    </table>
-
-
-
-
-
-
-    {% endblock contendioPerfil %}
+    </table> {% endblock contendioPerfil %}
+</body>

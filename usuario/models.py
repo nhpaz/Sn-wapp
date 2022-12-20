@@ -78,4 +78,29 @@ class PeticionResidente(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,related_name='cliente')
     residente = models.ForeignKey(Residente, on_delete=models.CASCADE) 
 
+
+class Factura(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING)
+    estado = models.BooleanField(default= False)
+
+class Tipo_pago(models.Model):
+    tipo = models.CharField(max_length=50)
+    def __str__(self):
+        return self.tipo
     
+
+class Servicio(models.Model):
+    nombre = models.CharField(max_length=30) 
+    precio= models.IntegerField()
+    def __str__(self):
+        return self.nombre + ' (Precio: '+str(self.precio) +')'
+    
+    
+class DetalleFactura(models.Model):
+    factura = models.OneToOneField(Factura, on_delete=models.CASCADE,related_name='detalle')
+    fecha_creacion = models.DateField(default=timezone.now)
+    tipo_pago = models.ForeignKey(Tipo_pago, on_delete=models.CASCADE)
+    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
+    
+
+

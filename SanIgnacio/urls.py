@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from landing import views
 from usuario.views import singin,singout,signup,perfil,borrarPerfil
-from servicios.views import listaPacientes,agregarControl,historial,seguridad,miPagos,miResidente,miSolicitud
-from administracion.views import peticiones,pDetalle,admins,clientes,medicos,agregarCliente,modificar,borrar,cambiarContra,agregarMedico,agregarAdmin,agregarResidente,residentes,modificarResidente
+from servicios.views import listaPacientes,agregarControl,historial,seguridad,miPagos,miResidente,miSolicitud,miPagosDetalle
+from administracion.views import peticiones,pDetalle,admins,clientes,medicos,agregarCliente,modificar,borrar,cambiarContra,agregarMedico,agregarAdmin,agregarResidente,residentes,modificarResidente,agregarPago,listaPagos,modificarPago
 
 urlpatterns = [
     ###Landing
@@ -40,6 +40,7 @@ urlpatterns = [
     #
     path('perfil/seguridad/',seguridad, name='seguridad'),
     path('perfil/miPagos/',miPagos, name='miPagos'),
+    path('perfil/miPagos/detalle/<pk>',miPagosDetalle, name='miPagosDetalle'),
     path('perfil/delete/',borrarPerfil, name='borrarUsuario'),
     path('perfil/miResidente/',miResidente, name='miResidente'),
     path('perfil/miResidente/solicitud',miSolicitud, name='miSolicitud'),
@@ -52,6 +53,12 @@ urlpatterns = [
     path('perfil/clientes/',clientes, name='clientes'),
     path('perfil/clientes/agregar/',agregarCliente, name='agregarCliente'),
     path('perfil/clientes/agregarResidente/<pk>',agregarResidente, name='agregarResidente'),
+    path('perfil/clientes/pagoCliente/<pk>',listaPagos, name='listaPagos'),
+    path('perfil/clientes/pagoCliente/agregarPago/<pk>',agregarPago, name='agregarPago'),
+    path('perfil/clientes/pagoCliente/modificarPago/<pk>',modificarPago, name='modificarPago'),
+
+
+
     #Residentes
     path('perfil/residentes/',residentes, name='residentes'),
     path('perfil/residentes/modificar/<pk>',modificarResidente, name='modificarResidente'),
@@ -63,6 +70,7 @@ urlpatterns = [
     path('perfil/usuarios/modificar/<pk>',modificar, name='modificar'),
     path('perfil/usuarios/borrar/<pk>',borrar, name='borrar'),
     path('perfil/usuarios/cambiarContrasenia/<pk>',cambiarContra, name='cambiarContra'),
+
 
     #medicos
     path('perfil/medicos/',medicos, name='medicos'),

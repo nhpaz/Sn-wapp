@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from usuario.models import Residente, Control_medico, PeticionResidente
+from usuario.models import Residente, Control_medico, PeticionResidente,Factura
 from .forms import ControlForm,NuevaContraForm
 from usuario.forms import ResidenteForm
 # Create your views here.
@@ -121,8 +121,33 @@ def miSolicitud(request):
     
 
 def miPagos(request):
+    usuario = request.user
+    
+    if request.method == 'GET':
+        pagosData = Factura.objects.filter(cliente_id= usuario.cliente.id)
+        
+        return render(request,'templatesServicios/miPagos.html',{'pagosData':pagosData})
+        
+    
+    else:
+        pass
     
     return render(request,'templatesServicios/miPagos.html')
+
+def miPagosDetalle(request,pk):
+    usuario = request.user
+    factura = Factura.objects.get(pk=pk)
+    
+    if request.method == 'GET':
+        
+        return render(request,'templatesServicios/miPagosDetalle.html',{'pagosData':factura})
+        
+    
+    else:
+        pass
+    
+    return render(request,'templatesServicios/miPagosDetalle.html',{'pagosData':factura})
+
 
         
         

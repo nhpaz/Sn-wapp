@@ -1,0 +1,37 @@
+{% extends "templatesUsuario/basePerfil.html" %}{% load static %} {% block titulo %}
+<title>Agregar Medico</title>
+
+{% endblock titulo %}
+
+
+<body>
+    {% block contendioPerfil %}
+    <div class="text-center">
+        <h1>Agregar Pago</h1>
+        <hr>
+    </div>
+    <div class="text-start">
+        <a class="btn btn-primary btn-sm" href="../{{usuarioPk}}">volver</a>
+        <hr>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %} {{dfform}} {% if exito %}
+        <div class="alert alert-success mx-3 my-3">
+            Se agregado factura con extito
+        </div>
+        {% endif %}
+        <div class="mt-5 mb-3 ">
+            <div class="row">
+                <div class="col text-end me-5">
+                    <button class="btn btn-primary" type="submit">Agregar pago</button>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+
+    {% endblock contendioPerfil %}
+</body>

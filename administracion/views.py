@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
-from usuario.models import PeticionResidente, Usuario,Cliente,Medico,Admin,Residente
-from usuario.forms import UsuarioForm,ClienteForm,MedicoForm,AdminForm,ResidenteForm,ResidenteFormUpdate
+from usuario.models import PeticionResidente, Usuario,Cliente,Medico,Admin,Residente,Factura,DetalleFactura,Tipo_pago
+from usuario.forms import UsuarioForm,ClienteForm,MedicoForm,AdminForm,ResidenteForm,ResidenteFormUpdate,DetalleFacturaForm,FacturaForm
 from servicios.forms import NuevaContraForm
 # Create your views here.
 
@@ -69,7 +69,6 @@ def modificar(request,pk):
     if request.method == 'GET':
     
         uData = Usuario.objects.get(pk=pk)
-        print(request.session)
     
         return render(request,'templatesAdministracion/modificar.html',{'uData':uData})
     
@@ -181,6 +180,73 @@ def agregarResidente(request,pk):
         else:
             return render(request,'templatesAdministracion/agregarResidente.html',{'form':form})
 
+
+def listaPagos(request,pk):
+    usuario = Usuario.objects.get(pk=pk)
+
+    if request.method == 'GET':
+        pagosData = Factura.objects.filter(cliente_id= usuario.cliente.id)
+        
+        return render(request,'templatesAdministracion/listaPagos.html',{'pagosData':pagosData,'usuario':usuario})
+        
+    
+    else:
+        pass
+    
+    
+
+def agregarPago(request,pk):
+    
+    usuario = Usuario.objects.get(pk=pk)
+    
+    if request.method == 'GET':
+        dfform=DetalleFacturaForm
+        
+        return render(request,'templatesAdministracion/agregarPago.html',{'dfform':dfform, 'usuarioPk':pk})
+    
+    else:
+        dfform=DetalleFacturaForm(request.POST)
+        if dfform.is_valid():
+            factura = Factura.objects.create(cliente_id = usuario.cliente.id)
+            
+            detalleFactura = dfform.save(commit=False)
+            detalleFactura.factura_id = factura.id
+            
+            factura.save()
+            detalleFactura.save()
+            return render(request,'templatesAdministracion/agregarPago.html',{'dfform':dfform,'exito':'exito', 'usuarioPk':pk})
+        else:
+            return render(request,'templatesAdministracion/agregarPago.html',{'dfform':dfform,'error':'error', 'usuarioPk':pk})
+
+            
+def modificarPago(request,pk):
+    
+    factura = Factura.objects.get(pk=pk)
+    usuarioPk= factura.cliente.usuario.id
+    
+    
+    if request.method == 'GET':
+        dfform=DetalleFacturaForm(instance= factura.detalle)
+        fform = FacturaForm (instance=factura)
+        
+        return render(request,'templatesAdministracion/modificarPago.html',{'dfform':dfform, 'usuarioPk':usuarioPk,'fform':fform})
+    
+    else:
+        detalle=DetalleFacturaForm(request.POST , instance=factura.detalle)
+        factura = FacturaForm (request.POST,instance=factura)
+
+        if detalle.is_valid() and factura.is_valid():
+            
+            factura.save()
+            detalle.save()
+            
+            return render(request,'templatesAdministracion/modificarPago.html',{'fform':factura,'dfform':detalle,'exito':'exito', 'usuarioPk':usuarioPk,})
+        else:
+            return render(request,'templatesAdministracion/modificarPago.html',{'fform':factura,'dfform':detalle,'error':'error', 'usuarioPk':usuarioPk})
+
+        
+    
+    
 #Residente
 def residentes(request):
     if request.method == 'GET':
@@ -197,7 +263,6 @@ def modificarResidente(request,pk):
     else:
 
         residente = ResidenteFormUpdate(request.POST, instance=reData)
-        print
         if residente.is_valid():
             residente.save()
             return redirect('residentes')

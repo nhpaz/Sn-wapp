@@ -29,7 +29,7 @@
 
                         {% if user.is_cliente %}
                         <a href="{% url 'miResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'miResidente'  %}  active {% endif %}">Residentes</a>
-                        <a href="{% url 'miPagos'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'pagos' %}  active {% endif %}">Pagos</a> {% endif %}
+                        <a href="{% url 'miPagos'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'miPagos' %}  active {% endif %}">Pagos</a> {% endif %}
 
                         <!--Medico-->
                         {% if user.is_medico %}
@@ -51,6 +51,9 @@
                         {% if request.resolver_match.url_name == 'agregarMedico' %}  active {% endif %}">Medicos</a>
                         <a href="{% url 'clientes'  %}" class="list-group-item list-group-item-action 
                         {% if request.resolver_match.url_name == 'clientes' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'agregarPago' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'modificarPago' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'listaPagos' %}  active {% endif %}
                         {% if request.resolver_match.url_name == 'modificarCliente' %}  active {% endif %}
                         {% if request.resolver_match.url_name == 'agregarCliente' %}  active {% endif %}">Clientes</a>
                         <a href="{% url 'admins'  %}" class="list-group-item list-group-item-action
