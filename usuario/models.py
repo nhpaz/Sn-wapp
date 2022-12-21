@@ -34,7 +34,7 @@ class Usuario(AbstractUser):
     
 class Cliente(models.Model):
     usuario= models.OneToOneField(Usuario,null=True, on_delete=models.CASCADE,related_name='cliente')
-    direccion = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=60)
     
     
 class Medico(models.Model):

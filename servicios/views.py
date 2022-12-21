@@ -100,7 +100,7 @@ def miSolicitud(request):
         print(request.POST)
         if form.is_valid():
             residente = form.save(commit=False)
-            residente.cliente_id = usuario_actual.id
+            residente.cliente_id = usuario_actual.cliente.id
             residente.save()
             
             residenteGuardado= Residente.objects.get(rut=request.POST['rut'])
