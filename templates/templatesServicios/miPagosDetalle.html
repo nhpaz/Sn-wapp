@@ -15,30 +15,83 @@
     {% block contendioPerfil %}
 
     <div class="text text-center" style="color: rgb(89, 79, 79);">
-        <h1>Detalle</h1>
+        <h1>Detalle factura</h1>
         <hr>
     </div>
+    <div>
+        <a href="../" class="btn btn-primary btn-sm">Volver</a>
+        <hr>
+    </div>
+
     <div class="container">
-        <div class="row card-body shadow-sm">
-            <div class="col-12 my-2">
-                Fecha: {{pagosData.detalle.fecha_creacion}}
+        <div class="row">
+            <div class="col-12 alert alert-secondary text-center">
+                <h5>Datos del cliente</h5>
             </div>
             <div class="col-6">
-                Tipo de pago: {{pagosData.detalle.tipo_pago}}
+                Cliente: {{pagosData.cliente.usuario.first_name}} {{pagosData.cliente.usuario.last_name}} <br> Direccion: {{pagosData.cliente.direccion}}<br>
             </div>
             <div class="col-6">
-                Estado: {% if pagosData.estado == True %} Pagado {% else %} Por pagar {% endif %}
+                Rut: {{pagosData.cliente.usuario.rut}} <br> N°Doc interno: {{pagosData.id}} <br>N° de cliente: {{pagosData.cliente.id}}<br> Fecha de emisión: {{pagosData.detalle.fecha_creacion}}
             </div>
-            <div class="card-body shadow-sm row">
-                <div class="col-6">
-                    Servicio: {{pagosData.detalle.servicio.nombre}}
-                </div>
-                <div class="col-6">
-                    Precio: {{pagosData.detalle.servicio.precio}}
-                </div>
+
+        </div>
+
+
+        <div class="text-center my-3 alert alert-secondary">
+            <h5>Detalle</h5>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">DESCRIPCIÓN</th>
+                    <th scope="col">CANT</th>
+                    <th scope="col">PRECIO UNITARIO</th>
+                    <th scope="col">MONTO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{pagosData.detalle.servicio.nombre}}</th>
+                    <td>1</td>
+                    <td>{{pagosData.detalle.servicio.precio}}</td>
+                    <td>{{pagosData.detalle.servicio.precio}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="container row">
+            <div class="col text-end me-5 pe-5">
+
+                <h6>Total pagar: {{pagosData.detalle.servicio.precio}}</h6>
 
             </div>
         </div>
+
+
+
+        <!--         <div class="row card-body shadow-sm">
+            <div class="col-12 my-2">
+                Fecha: {{pagosData.detalle.fecha_creacion}}
+            </div>
+            <div class="col-6 ">
+                Tipo de pago: {{pagosData.detalle.tipo_pago}}
+            </div>
+            <div class="col-6 ">
+                Estado: {% if pagosData.estado == True %} Pagado {% else %} Por pagar {% endif %}
+            </div>
+            <div class="col-6 ">
+                Servicio:
+            </div>
+            <div class="col">
+                {{pagosData.detalle.servicio.nombre}}
+            </div>
+
+            <div class="col-6">
+                Precio: {{pagosData.detalle.servicio.precio}}
+            </div>
+
+        </div> -->
 
     </div>
 

@@ -28,8 +28,12 @@
                         <!--Cliente-->
 
                         {% if user.is_cliente %}
-                        <a href="{% url 'miResidente'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'miResidente'  %}  active {% endif %}">Residentes</a>
-                        <a href="{% url 'miPagos'  %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'miPagos' %}  active {% endif %}">Pagos</a> {% endif %}
+                        <a href="{% url 'miResidente'  %}" class="list-group-item list-group-item-action
+                        {% if request.resolver_match.url_name == 'miSolicitud'  %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'miResidente'  %}  active {% endif %}">Residentes</a>
+                        <a href="{% url 'miPagos'  %}" class="list-group-item list-group-item-action 
+                        {% if request.resolver_match.url_name == 'miPagosDetalle' %}  active {% endif %}
+                        {% if request.resolver_match.url_name == 'miPagos' %}  active {% endif %}">Pagos</a> {% endif %}
 
                         <!--Medico-->
                         {% if user.is_medico %}

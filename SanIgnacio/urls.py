@@ -43,7 +43,7 @@ urlpatterns = [
     path('perfil/miPagos/detalle/<pk>',miPagosDetalle, name='miPagosDetalle'),
     path('perfil/delete/',borrarPerfil, name='borrarUsuario'),
     path('perfil/miResidente/',miResidente, name='miResidente'),
-    path('perfil/miResidente/solicitud',miSolicitud, name='miSolicitud'),
+    path('perfil/miResidente/solicitud/',miSolicitud, name='miSolicitud'),
 
 
     ##Administracion
